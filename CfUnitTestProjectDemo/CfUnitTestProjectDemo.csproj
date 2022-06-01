@@ -57,7 +57,11 @@
     </ApplicationDefinition>
     <Compile Include="Command\CommandBase.cs" />
     <Compile Include="Command\DelegateCommand.cs" />
+    <Compile Include="Services\AddMember.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Services\ReadAsync.cs" />
+    <Compile Include="Services\UpdateMembersAsync.cs" />
+    <Compile Include="Services\WriteAsync.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\HomeViewVm.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
