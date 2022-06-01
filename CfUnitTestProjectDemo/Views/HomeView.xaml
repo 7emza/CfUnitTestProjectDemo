@@ -8,27 +8,31 @@
     d:DesignHeight="450"
     d:DesignWidth="800"
     FontFamily="Roboto"
+    FontSize="19"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*" />
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Background="#CCCCC4">
 
+        <!--  Letf gird  -->
+        <Grid Grid.Column="0" Background="AliceBlue">
             <Border
-                Margin="10"
+                Margin="3"
                 BorderBrush="White"
-                BorderThickness="5"
-                CornerRadius="8">
-                <Border.Effect>
-                    <DropShadowEffect Color="LightGray" />
-                </Border.Effect>
-                <Grid Margin="-1" Background="White">
+                BorderThickness="20"
+                CornerRadius="0.1">
+
+                <Grid Margin="0" Background="White">
                     <Grid.RowDefinitions>
+                        <!--  9 rows  -->
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
                         <RowDefinition Height="auto" />
@@ -38,23 +42,39 @@
                         <Border
                             BorderBrush="#CAD7EE"
                             BorderThickness="2,4,2,4"
-                            CornerRadius="14">
+                            CornerRadius="10">
                             <Border.Effect>
-                                <DropShadowEffect Color="LightGray" />
+                                <DropShadowEffect Color="Beige" />
                             </Border.Effect>
-                            <HeaderedItemsControl Margin="12">
+                            <!--  header  -->
+                            <HeaderedItemsControl Margin="10">
                                 <TextBlock
-                                    FontSize="17"
+                                    FontSize="20"
                                     FontWeight="Medium"
                                     Foreground="#4e5052"
-                                    Text="Event Planner">
+                                    Text="Cairful Event Planned ">
+                                    <!--  icon  -->
                                     <TextBlock
                                         Grid.Column="1"
                                         Margin="10,0,10,0"
                                         Padding="0,5,0,0"
                                         FontFamily="Segoe MDL2 Assets"
                                         FontSize="20"
-                                        Text="&#xE71D;" />
+                                        Text="" />
+                                </TextBlock>
+                                <TextBlock
+                                    FontSize="12"
+                                    FontWeight="Medium"
+                                    Foreground="#4e5052"
+                                    Text="xUnit Test Demo project">
+                                    <!--  icon  -->
+                                    <TextBlock
+                                        Grid.Column="1"
+                                        Margin="10,0,10,0"
+                                        Padding="0,5,0,0"
+                                        FontFamily="Segoe MDL2 Assets"
+                                        FontSize="20"
+                                        Text="" />
                                 </TextBlock>
                             </HeaderedItemsControl>
                         </Border>
@@ -66,27 +86,46 @@
                             HorizontalAlignment="Center"
                             FontWeight="Medium"
                             Foreground="#4e5052"
-                            Text="Members who accepted the invitation">
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="10,0,10,0"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="15"
-                                Text="&#xE762;" />
-                        </TextBlock>
-                        <Border
-                            Grid.Row="1"
-                            Margin="0,5,0,20"
-                            BorderBrush="Transparent">
+                            Text="List of accepted members" />
+                        <Border Grid.Row="1" Margin="0,5,0,20">
                             <Border.Effect>
                                 <DropShadowEffect Color="LightGray" />
                             </Border.Effect>
                             <!--  Put Button here  -->
+                            <Button
+                                Name="SeeAllMember"
+                                Margin="10,0,10,0"
+                                Padding="0,5"
+                                Background="Gray"
+                                Command="{Binding SubmitCommand}"
+                                Content="See all members"
+                                FontWeight="Medium"
+                                Foreground="white"
+                                IsEnabled="{Binding Path=IsFormValid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
 
+                                    </Style>
+                                    <!--<Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="Background" Value="DarkGoldenrod" />
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>-->
+                                </Button.Resources>
+                            </Button>
                         </Border>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="2">
+                    <!--  Separator  -->
+                    <Separator
+                        Grid.Row="2"
+                        Height="1"
+                        Margin="0,10,0,20" />
+
+                    <StackPanel Grid.Row="3">
                         <TextBlock
                             Margin="0,0,0,5"
                             HorizontalAlignment="Center"
@@ -146,11 +185,31 @@
                                 <DropShadowEffect Color="LightGray" />
                             </Border.Effect>
                             <!--  Put Button here  -->
-
+                            <Button
+                                Name="AddMember"
+                                Margin="10,0,10,0"
+                                Padding="0,5"
+                                Background="Gray"
+                                Command="{Binding AddMember}"
+                                Content="Add member"
+                                FontWeight="Medium"
+                                Foreground="white"
+                                IsEnabled="{Binding Path=IsFormValid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
                         </Border>
                     </StackPanel>
+                    <!--  Separator  -->
+                    <Separator
+                        Grid.Row="4"
+                        Height="1"
+                        Margin="0" />
 
-                    <StackPanel Grid.Row="3">
+                    <StackPanel Grid.Row="5">
                         <TextBlock
                             Margin="0,0,0,5"
                             HorizontalAlignment="Center"
@@ -179,10 +238,26 @@
                             </Border.Effect>
 
                             <!--  Put Button here  -->
+                            <Button
+                                Name="GenereateCode"
+                                Margin="10,0,10,0"
+                                Padding="0,5"
+                                Background="Gray"
+                                Command="{Binding GenerateCode}"
+                                Content="Generate code"
+                                FontWeight="Medium"
+                                Foreground="white"
+                                IsEnabled="{Binding Path=IsFormValid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
                         </Border>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="4">
+                    <StackPanel Grid.Row="6">
                         <TextBlock
                             Margin="0,0,0,5"
                             HorizontalAlignment="Center"
@@ -210,11 +285,26 @@
                                 <DropShadowEffect Color="LightGray" />
                             </Border.Effect>
                             <!--  Put Button here  -->
-
+                            <Button
+                                Name="CancelMember"
+                                Margin="10,0,10,0"
+                                Padding="0,5"
+                                Background="Gray"
+                                Command="{Binding CancelMember}"
+                                Content="Cancel member"
+                                FontWeight="Medium"
+                                Foreground="white"
+                                IsEnabled="{Binding Path=IsFormValid, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                <Button.Resources>
+                                    <Style TargetType="Border">
+                                        <Setter Property="CornerRadius" Value="5" />
+                                    </Style>
+                                </Button.Resources>
+                            </Button>
                         </Border>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="5">
+                    <StackPanel Grid.Row="7">
                         <Border
                             Margin="0,0,0,5"
                             BorderBrush="LightGray"
@@ -229,6 +319,8 @@
                 </Grid>
             </Border>
         </Grid>
+
+        <!--  Right grid  -->
         <Grid Grid.Column="1" Background="#CCCCC4">
             <Grid>
                 <Border
