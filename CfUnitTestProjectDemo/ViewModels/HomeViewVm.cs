@@ -12,6 +12,9 @@ namespace CfUnitTestProjectDemo.ViewModels
         private string _firstName;
         private string _lastName;
         private string _email;
+
+        string filePath = @"C:\Users\Shadi\Desktop\Hamza\.NET\CfUnitTestProjectDemo\Members.txt";
+
         public HomeViewVm()
         {
             SeeAllMemberCommand = new DelegateCommand(SeeAllMember);
@@ -24,7 +27,6 @@ namespace CfUnitTestProjectDemo.ViewModels
         public DelegateCommand CancelMemberCommand { get; set; }
         public DelegateCommand GenerateCodeCommand { get; set; }
         public DelegateCommand SeeAllMemberCommand { get; set; }
-
 
         public string FirstName
         {
