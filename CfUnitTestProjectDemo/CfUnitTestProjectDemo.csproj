@@ -89,6 +89,10 @@
     <Compile Include="Models\Member.cs" />
     <Compile Include="Contracts\Base\IRepositoryBase.cs" />
     <Compile Include="Persistances\MemberRepository.cs" />
+    <Compile Include="ServicesMemberMethod\AddMember.cs" />
+    <Compile Include="ServicesMemberMethod\ReadAsync.cs" />
+    <Compile Include="ServicesMemberMethod\UpdateMembersAsync.cs" />
+    <Compile Include="ServicesMemberMethod\WriteAsync.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Views\HomeView.xaml.cs">

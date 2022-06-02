@@ -27,9 +27,6 @@ namespace CfUnitTestProjectDemo.ViewModels
 
         public HomeViewModel(IMemberRepository memberRepository)
         {
-
-            
-
             _memberRepository = memberRepository;
             Initialize();
         }
@@ -132,7 +129,7 @@ namespace CfUnitTestProjectDemo.ViewModels
 
         public async void AddMember()
         {
-            if (!IsFieldsValid())
+            if (IsFieldsValid() == false)
             {
                 return;
             }
