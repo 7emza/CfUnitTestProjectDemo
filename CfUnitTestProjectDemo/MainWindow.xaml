@@ -10,9 +10,7 @@
     Title="MainWindow"
     Width="1000"
     ResizeMode="NoResize"
-    mc:Ignorable="d">
-    <Window.DataContext>
-        <VM:HomeViewVm />
-    </Window.DataContext>
+    mc:Ignorable="d"
+    >
     <Views:HomeView />
 </Window>

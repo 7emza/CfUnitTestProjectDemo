@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CfUnitTestProjectDemo.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CfUnitTestProjectDemo.Models
 {
-    public class Member
+    public class Member : IEntity
     {
         public Guid Id { get; set; }
         public string FirstName { get; set; }
