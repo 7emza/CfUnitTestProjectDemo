@@ -66,7 +66,7 @@ namespace CfUnitTestProjectDemo.Persistances
             }
         }
 
-        private static string GetFile_PATH(File_PATH_DESTINATION file_PATH)
+        private string GetFile_PATH(File_PATH_DESTINATION file_PATH)
         {
             var FILE_PATH = "/";
             if (file_PATH == File_PATH_DESTINATION.Accepted)

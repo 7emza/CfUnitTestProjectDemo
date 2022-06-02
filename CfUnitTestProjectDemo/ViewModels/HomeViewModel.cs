@@ -6,7 +6,9 @@ using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +27,9 @@ namespace CfUnitTestProjectDemo.ViewModels
 
         public HomeViewModel(IMemberRepository memberRepository)
         {
+
+            
+
             _memberRepository = memberRepository;
             Initialize();
         }
