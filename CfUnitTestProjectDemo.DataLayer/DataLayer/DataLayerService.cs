@@ -13,37 +13,60 @@ namespace CfUnitTestProjectDemo.DataLayer.DataLayer
     public class DataLayerService : IDataLayerService
     {
         protected string ACCEPTED_FILE_PATH =
-            $@"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName}/CfUnitTestProjectDemo/AcceptedMembers.txt";
+            $@"C:\Users\Shadi\Desktop\Hamza\.NET\CfUnitTestProjectDemo\AcceptedMembers.txt";
 
         protected string REJECTED_FILE_PATH =
-            $@"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.Parent.FullName}/CfUnitTestProjectDemo/RejectedMembers.txt";
+            $@"C:\Users\Shadi\Desktop\Hamza\.NET\CfUnitTestProjectDemo\RejectedMembers.txt";
 
         public async Task<List<Member>> ReadFromFileAsync(FilePathDestination filePath)
         {
+            //var path = GetFile_PATH(filePath);
+            //var members = new List<Member>();
+            //using (var fileReader = File.OpenText(path))
+            //{
+            //    var text = await fileReader.ReadToEndAsync();
+            //    var lines = text.Split('\n');
+
+            //    foreach (var line in lines)
+            //    {
+            //        if (string.IsNullOrEmpty(line))
+            //            continue;
+            //        var lineArray = line.Split(' ');
+            //        var member = new Member();
+
+            //        member.FirstName = lineArray[0];
+            //        member.LastName = lineArray[1];
+            //        member.Email = lineArray[2];
+            //        members.Add(member);
+            //    }
+
+            //    fileReader.Close();
+            //}
+
+            //return members;
             var path = GetFile_PATH(filePath);
-            var members = new List<Member>();
-            using (var fileReader = File.OpenText(path))
+            List<Member> members = new List<Member>();
+            using (StreamReader fileReader = File.OpenText(path))
             {
-                var text = await fileReader.ReadToEndAsync();
-                var lines = text.Split('\n');
+                string text = await fileReader.ReadToEndAsync();
+                string[] lines = text.Split('\n');
 
-                foreach (var line in lines)
+                foreach (string line in lines)
                 {
-                    if (string.IsNullOrEmpty(line))
-                        continue;
-                    var lineArray = line.Split(' ');
-                    var member = new Member();
-                    var guid = Guid.Parse(lineArray[0]);
-                    member.Id = guid;
-                    member.FirstName = lineArray[1];
-                    member.LastName = lineArray[2];
-                    member.Email = lineArray[3];
-                    members.Add(member);
+                    if (line != null && line.Length != 0)
+                    {
+                        string[] lineArray = line.Split(' ');
+                        Member member = new Member();
+                        Guid guid = Guid.Parse(lineArray[0]);
+                        member.Id = guid;
+                        member.FirstName = lineArray[1];
+                        member.LastName = lineArray[2];
+                        member.Email = lineArray[3];
+                        members.Add(member);
+                    }
                 }
-
                 fileReader.Close();
             }
-
             return members;
         }
 
@@ -56,7 +79,7 @@ namespace CfUnitTestProjectDemo.DataLayer.DataLayer
                 foreach (var memberUpdate in memberList)
                 {
                     await updateWriter.WriteLineAsync(
-                        $"{memberUpdate.Id} {memberUpdate.FullName} {memberUpdate.Email}");
+                        $"{memberUpdate.Id} {memberUpdate.FirstName} {memberUpdate.LastName} {memberUpdate.Email}");
                 }
 
                 updateWriter.Close();
@@ -71,7 +94,7 @@ namespace CfUnitTestProjectDemo.DataLayer.DataLayer
 
             using (var fileWriter = new StreamWriter(path, append: true))
             {
-                await fileWriter.WriteLineAsync($"{member.Id} {member.FullName} {member.Email}");
+                await fileWriter.WriteLineAsync($"{member.Id} {member.FirstName} {member.LastName} {member.Email}");
                 fileWriter.Close();
             }
         }

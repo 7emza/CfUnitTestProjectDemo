@@ -77,17 +77,17 @@ namespace CfUintTestProjectDemoUI.ClientSideTest.ViewModelsTest
         }
 
 
-        //[Fact]
-        //public void AddMember_Test()
-        //{
-        //    //Act
-        //    _homeViewModel.FirstName = _fakeMember.FirstName;
-        //    _homeViewModel.LastName = _fakeMember.LastName;
-        //    _homeViewModel.Email = _fakeMember.Email;
+        [Fact]
+        public void AddMember_Test()
+        {
+            //Act
+            _homeViewModel.FirstName = _fakeMember.FirstName;
+            _homeViewModel.LastName = _fakeMember.LastName;
+            _homeViewModel.Email = _fakeMember.Email;
 
-        //    //Assert
-        //     _homeViewModel.AddMemberCommand.Execute();
-        //}
+            //Assert
+            _homeViewModel.AddMemberCommand.Execute();
+        }
 
         //[Fact]
         //public void IsFieldsValid_Test()

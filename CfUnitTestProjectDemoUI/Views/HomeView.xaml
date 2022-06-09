@@ -83,38 +83,6 @@
                         </Border>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1">
-
-                        <Border Grid.Row="1" Margin="0,5,0,20">
-                            <Border.Effect>
-                                <DropShadowEffect Color="LightGray" />
-                            </Border.Effect>
-                            <!--  Put Button here  -->
-                            <Button
-                                Name="SeeAllMember"
-                                Margin="10,0,10,0"
-                                Padding="0,5"
-                                Background="Gray"
-                                Command="{Binding SeeAllMemberCommand}"
-                                Content="See all members"
-                                FontWeight="Medium"
-                                Foreground="white">
-                                <Button.Resources>
-                                    <Style TargetType="Border">
-                                        <Setter Property="CornerRadius" Value="5" />
-
-                                    </Style>
-                                    <!--<Style TargetType="Button">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="Background" Value="DarkGoldenrod" />
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>-->
-                                </Button.Resources>
-                            </Button>
-                        </Border>
-                    </StackPanel>
 
                     <!--  Separator  -->
                     <Separator
@@ -204,36 +172,6 @@
                         Height="1"
                         Margin="20" />
 
-                    <!--<StackPanel Grid.Row="5">
-                        <TextBlock
-                            Margin="0,0,0,5"
-                            HorizontalAlignment="Center"
-                            FontWeight="Medium"
-                            Foreground="#4e5052"
-                            Text="Generate VIP code">
-                            <TextBlock
-                                Grid.Column="1"
-                                Margin="10,0,10,0"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="15"
-                                Text="&#xE734;" />
-                        </TextBlock>
-                        <TextBox
-                            x:Name="OutputGenerateCode"
-                            Margin="0,0,0,5"
-                            HorizontalAlignment="Center"
-                            FontWeight="Bold"
-                            IsReadOnly="True"
-                            Text="{Binding OutputGenerateCode}" />
-                        <Border
-                            Grid.Row="3"
-                            Margin="0,5,0,15"
-                            BorderBrush="Transparent">
-                            <Border.Effect>
-                                <DropShadowEffect Color="LightGray" />
-                            </Border.Effect>
-
-                    -->
 
                     <StackPanel Grid.Row="6">
                         <TextBlock

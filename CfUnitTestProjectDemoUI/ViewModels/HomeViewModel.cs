@@ -31,11 +31,9 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         }
 
         #region Delegate Commands
-        public DelegateCommand SeeAllMemberCommand { get; set; }
         public DelegateCommand AddMemberCommand { get; set; }
         public DelegateCommand CancelMemberCommand { get; set; }
-        public DelegateCommand RemoveMemberCommand { get; set; }
-        public DelegateCommand GenerateCodeCommand { get; set; }
+
         #endregion
 
         #region Properties
@@ -89,12 +87,11 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         #region Methods
         public void Initialize()
         {
-            SeeAllMemberCommand = new DelegateCommand(() => SeeAllMember().FireAndForgetAsync());
             AddMemberCommand = new DelegateCommand(() => AddMember().FireAndForgetAsync());
             CancelMemberCommand = new DelegateCommand(() => CancelMember().FireAndForgetAsync());
 
-            RemoveMemberCommand = new DelegateCommand(() => RemoveMember().FireAndForgetAsync());
-            GenerateCodeCommand = new DelegateCommand(() => GenerateCode().FireAndForgetAsync());
+            //RemoveMemberCommand = new DelegateCommand(() => RemoveMember().FireAndForgetAsync());
+            //GenerateCodeCommand = new DelegateCommand(() => GenerateCode().FireAndForgetAsync());
             LoadData();
             Reset();
         }
@@ -145,25 +142,15 @@ namespace CfUnitTestProjectDemoUI.ViewModels
                 Email = this.Email,
             }, FilePathDestination.Accepted);
 
+            
             Counter++;
             AddCounter = $"Add Member { Counter}";
+            await AcceptedMembers();
             ResetFields();
         }
 
-        public bool IsFieldsValid() =>
-            (FirstName == null ||
-             LastName == null ||
-             Email == null) == false;
+        public bool IsFieldsValid() => (FirstName == null || LastName == null || Email == null) == false;
 
-        private async Task RemoveMember()
-        {
-
-        }
-        private async Task GenerateCode()
-        {
-            var code = Guid.NewGuid();
-            OutputGenerateCode = $"VIP-{code}";
-        }
 
         private async Task CancelMember()
         {
@@ -186,7 +173,6 @@ namespace CfUnitTestProjectDemoUI.ViewModels
                 }
             }
             MembersFromFileList = await _memberRepository.UpdateMembersToFileAsync(MembersFromFileList, FilePathDestination.Accepted);
-
             var rejected = await AddToRejected(SelectedAcceptedMemberItem);
             ListAcceptedMembers.Remove(rejected);
         }
