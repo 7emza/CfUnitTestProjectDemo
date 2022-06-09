@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#project files
+RejectedMembers.txt
+AcceptedMembers.txt
+
 # User-specific files
 *.rsuser
 *.suo
