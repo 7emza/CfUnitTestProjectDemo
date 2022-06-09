@@ -1,11 +1,13 @@
-﻿
-using Prism.Commands;
-using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using CfUnitTestProjectDemoUI.Command;
+using CfUnitTestProjectDemo.Common.Contracts;
+using CfUnitTestProjectDemo.Common.Models;
+using CfUnitTestProjectDemo.Common.Enums;
+using CfUnitTestProjectDemo.Common.Extention;
+using Prism.Commands;
+using Prism.Mvvm;
 
 namespace CfUnitTestProjectDemoUI.ViewModels
 {
@@ -29,9 +31,9 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         }
 
         #region Delegate Commands
-        public AsyncDelegateCommand SeeAllMemberCommand { get; set; }
-        public AsyncDelegateCommand AddMemberCommand { get; set; }
-        public AsyncDelegateCommand CancelMemberCommand { get; set; }
+        public DelegateCommand SeeAllMemberCommand { get; set; }
+        public DelegateCommand AddMemberCommand { get; set; }
+        public DelegateCommand CancelMemberCommand { get; set; }
         public DelegateCommand RemoveMemberCommand { get; set; }
         public DelegateCommand GenerateCodeCommand { get; set; }
         #endregion
@@ -87,12 +89,12 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         #region Methods
         public void Initialize()
         {
-            SeeAllMemberCommand = new AsyncDelegateCommand(SeeAllMember);
-            AddMemberCommand = new AsyncDelegateCommand(AddMember);
-            CancelMemberCommand = new AsyncDelegateCommand(CancelMember);
+            SeeAllMemberCommand = new DelegateCommand(() => SeeAllMember().FireAndForgetAsync());
+            AddMemberCommand = new DelegateCommand(() => AddMember().FireAndForgetAsync());
+            CancelMemberCommand = new DelegateCommand(() => CancelMember().FireAndForgetAsync());
 
-            RemoveMemberCommand = new DelegateCommand(RemoveMember);
-            GenerateCodeCommand = new DelegateCommand(GenerateCode);
+            RemoveMemberCommand = new DelegateCommand(() => RemoveMember().FireAndForgetAsync());
+            GenerateCodeCommand = new DelegateCommand(() => GenerateCode().FireAndForgetAsync());
             LoadData();
             Reset();
         }
@@ -153,11 +155,11 @@ namespace CfUnitTestProjectDemoUI.ViewModels
              LastName == null ||
              Email == null) == false;
 
-        private static void RemoveMember()
+        private async Task RemoveMember()
         {
 
         }
-        private void GenerateCode()
+        private async Task GenerateCode()
         {
             var code = Guid.NewGuid();
             OutputGenerateCode = $"VIP-{code}";

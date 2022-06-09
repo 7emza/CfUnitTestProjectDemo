@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{708F4BB4-ECCA-45CC-9F31-4EEF5BEB0DEC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>CfUnitTestProjectDemo</RootNamespace>
-    <AssemblyName>CfUnitTestProjectDemo</AssemblyName>
+    <RootNamespace>CfUnitTestProjectDemoUI</RootNamespace>
+    <AssemblyName>CfUnitTestProjectDemoUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -83,16 +83,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Contracts\Repositories\IMemberRepository.cs" />
-    <Compile Include="Models\Base\IEntity.cs" />
-    <Compile Include="Persistances\Base\RepositoryBase.cs" />
-    <Compile Include="Models\Member.cs" />
-    <Compile Include="Contracts\Base\IRepositoryBase.cs" />
-    <Compile Include="Persistances\MemberRepository.cs" />
-    <Compile Include="ServicesMemberMethod\AddMember.cs" />
-    <Compile Include="ServicesMemberMethod\ReadAsync.cs" />
-    <Compile Include="ServicesMemberMethod\UpdateMembersAsync.cs" />
-    <Compile Include="ServicesMemberMethod\WriteAsync.cs" />
+    <Compile Include="Command\AsyncDelegateCommand.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="Views\HomeView.xaml.cs">
@@ -142,6 +133,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CfUnitTestProjectDemo.Common\CfUnitTestProjectDemo.Common.csproj">
+      <Project>{ac53708b-dde3-4a8d-8341-7269d3907347}</Project>
+      <Name>CfUnitTestProjectDemo.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CfUnitTestProjectDemo.DataLayer\CfUnitTestProjectDemo.DataLayer.csproj">
+      <Project>{2a8cc8e7-cd1d-400b-80ee-1f7512aecd39}</Project>
+      <Name>CfUnitTestProjectDemo.DataLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

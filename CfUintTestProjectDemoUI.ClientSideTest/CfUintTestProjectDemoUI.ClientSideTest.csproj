@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -24,7 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CfUnitTestProjectDemo.Common\CfUnitTestProjectDemo.Common.csproj" />
     <ProjectReference Include="..\CfUnitTestProjectDemoUI\CfUnitTestProjectDemoUI.csproj" />
   </ItemGroup>
 

@@ -7,9 +7,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace CfUnitTestProjectDemo.ViewModels
+namespace CfUnitTestProjectDemoUI.ViewModels
 {
-    public abstract class BindableBase : INotifyPropertyChanged
+    public abstract class BindableBaseOld : INotifyPropertyChanged
     {
         #region Fields
 
