@@ -6,6 +6,7 @@ using CfUnitTestProjectDemo.Common.Contracts;
 using CfUnitTestProjectDemo.Common.Models;
 using CfUnitTestProjectDemo.Common.Enums;
 using CfUnitTestProjectDemo.Common.Extention;
+using CfUnitTestProjectDemo.DataLayer.DataLayer;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -14,7 +15,7 @@ namespace CfUnitTestProjectDemoUI.ViewModels
     public class HomeViewModel : BindableBase
     {
         #region Fields
-        private readonly IDataLayerService _memberRepository;
+        private readonly IDataLayerService _dataLayerService;
         private string _firstName;
         private string _lastName;
         private string _email;
@@ -24,9 +25,9 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         private string _addCounter;
         #endregion
 
-        public HomeViewModel(IDataLayerService memberRepository)
+        public HomeViewModel(IDataLayerService dataLayerService)
         {
-            _memberRepository = memberRepository;
+            _dataLayerService = dataLayerService;
             Initialize();
         }
 
@@ -87,11 +88,9 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         #region Methods
         public void Initialize()
         {
-            AddMemberCommand = new DelegateCommand(() => AddMember().FireAndForgetAsync());
-            CancelMemberCommand = new DelegateCommand(() => CancelMember().FireAndForgetAsync());
+            AddMemberCommand = new DelegateCommand( AddMember);
+            CancelMemberCommand = new DelegateCommand(CancelMember);
 
-            //RemoveMemberCommand = new DelegateCommand(() => RemoveMember().FireAndForgetAsync());
-            //GenerateCodeCommand = new DelegateCommand(() => GenerateCode().FireAndForgetAsync());
             LoadData();
             Reset();
         }
@@ -110,7 +109,7 @@ namespace CfUnitTestProjectDemoUI.ViewModels
 
         public async Task RejectedMembers()
         {
-            MembersFromFileList = await _memberRepository.ReadFromFileAsync(FilePathDestination.Rejected);
+            MembersFromFileList = await _dataLayerService.ReadFromFileAsync(FilePathDestination.Rejected);
             ListRejectedMembers.Clear();
             foreach (var member in MembersFromFileList)
             {
@@ -120,7 +119,7 @@ namespace CfUnitTestProjectDemoUI.ViewModels
 
         public async Task AcceptedMembers()
         {
-            MembersFromFileList = await _memberRepository.ReadFromFileAsync(FilePathDestination.Accepted);
+            MembersFromFileList = await _dataLayerService.ReadFromFileAsync(FilePathDestination.Accepted);
             ListAcceptedMembers.Clear();
             foreach (var member in MembersFromFileList)
             {
@@ -128,13 +127,13 @@ namespace CfUnitTestProjectDemoUI.ViewModels
             }
         }
 
-        public async Task AddMember()
+        public async void AddMember()
         {
             if (IsFieldsValid() == false)
             {
                 return;
             }
-            await _memberRepository.WriteToFileAsync(new Member
+            await _dataLayerService.WriteToFileAsync(new Member
             {
                 Id = new Guid(),
                 FirstName = this.FirstName,
@@ -149,10 +148,10 @@ namespace CfUnitTestProjectDemoUI.ViewModels
             ResetFields();
         }
 
-        public bool IsFieldsValid() => (FirstName == null || LastName == null || Email == null) == false;
+        public bool IsFieldsValid() => (FirstName != null || LastName == null || Email == null) == false;
 
 
-        private async Task CancelMember()
+        private async void CancelMember()
         {
             if (SelectedAcceptedMemberItem == null)
             {
@@ -172,7 +171,7 @@ namespace CfUnitTestProjectDemoUI.ViewModels
                     }
                 }
             }
-            MembersFromFileList = await _memberRepository.UpdateMembersToFileAsync(MembersFromFileList, FilePathDestination.Accepted);
+            MembersFromFileList = await _dataLayerService.UpdateMembersToFileAsync(MembersFromFileList, FilePathDestination.Accepted);
             var rejected = await AddToRejected(SelectedAcceptedMemberItem);
             ListAcceptedMembers.Remove(rejected);
         }
@@ -180,7 +179,7 @@ namespace CfUnitTestProjectDemoUI.ViewModels
         {
             if (rejectedMember != null)
             {
-                await _memberRepository.WriteToFileAsync(new Member
+                await _dataLayerService.WriteToFileAsync(new Member
                 {
                     FirstName = rejectedMember.FirstName,
                     LastName = rejectedMember.LastName,

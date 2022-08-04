@@ -9,13 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "50 Tests", "50 Tests", "{FC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Common", "03 Common", "{5BB5A699-0915-42F1-97D5-A7D5D041D122}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CfUnitTestProjectDemo.DataLayer", "CfUnitTestProjectDemo.DataLayer\CfUnitTestProjectDemo.DataLayer.csproj", "{2A8CC8E7-CD1D-400B-80EE-1F7512AECD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CfUnitTestProjectDemo.DataLayer", "CfUnitTestProjectDemo.DataLayer\CfUnitTestProjectDemo.DataLayer.csproj", "{2A8CC8E7-CD1D-400B-80EE-1F7512AECD39}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CfUnitTestProjectDemo.Common", "CfUnitTestProjectDemo.Common\CfUnitTestProjectDemo.Common.csproj", "{AC53708B-DDE3-4A8D-8341-7269D3907347}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CfUnitTestProjectDemo.Common", "CfUnitTestProjectDemo.Common\CfUnitTestProjectDemo.Common.csproj", "{AC53708B-DDE3-4A8D-8341-7269D3907347}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CfUnitTestProjectDemoUI", "CfUnitTestProjectDemoUI\CfUnitTestProjectDemoUI.csproj", "{D65BE377-5787-4983-967C-8DFDECCDE293}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CfUintTestProjectDemoUI.ClientSideTest", "CfUintTestProjectDemoUI.ClientSideTest\CfUintTestProjectDemoUI.ClientSideTest.csproj", "{D964B652-274B-41C7-A2B9-7F0C45F2B0BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CfUintTestProjectDemoUI.ClientSideTest", "CfUintTestProjectDemoUI.ClientSideTest\CfUintTestProjectDemoUI.ClientSideTest.csproj", "{D964B652-274B-41C7-A2B9-7F0C45F2B0BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
